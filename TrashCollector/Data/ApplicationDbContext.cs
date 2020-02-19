@@ -25,10 +25,31 @@ namespace TrashCollector.Data
                     NormalizedName = "ADMIN",
 
                     
+                },
+
+            
+            builder.Entity<IdentityRole>()
+                 .HasData(new IdentityRole
+                 {
+                     Name = "Customer",
+                     NormalizedName = "CUSTOMER",
+
+
+                 },
+
+            
+            builder.Entity<IdentityRole>()
+                .HasData(new IdentityRole
+                {
+                    Name = "Employee",
+                    NormalizedName = "EMPLOYEE",
+
+
                 }
 
-            );
-          
+            )));
+
+
 
         }
     }
