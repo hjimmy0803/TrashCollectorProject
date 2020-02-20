@@ -93,6 +93,16 @@ namespace TrashCollector.Areas.Identity.Pages.Account
                     if (await _roleManager.RoleExistsAsync(Input.role))
                     {
                         await _userManager.AddToRoleAsync(user, Input.role);
+
+                        if (Input.role == "Customer")
+                        {
+                            return RedirectToAction("Create", "Customers");
+                        }
+                        else 
+                        {
+                            return RedirectToAction("Create", "Employees");
+                        
+                        }
                     }
                     _logger.LogInformation("User created a new account with password.");
 
