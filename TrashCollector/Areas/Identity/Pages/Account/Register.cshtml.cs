@@ -96,11 +96,11 @@ namespace TrashCollector.Areas.Identity.Pages.Account
 
                         if (Input.role == "Customer")
                         {
-                            return RedirectToAction("Create", "Customers");
+                            return RedirectToAction("Create", "Customer");
                         }
                         else 
                         {
-                            return RedirectToAction("Create", "Employees");
+                            return RedirectToAction("Create", "Employee");
                         
                         }
                     }
