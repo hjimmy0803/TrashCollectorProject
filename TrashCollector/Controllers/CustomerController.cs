@@ -51,7 +51,7 @@ namespace TrashCollector.Controllers
         public IActionResult Create()
         {
             ViewData["AccountId"] = new SelectList(_context.Set<Account>(), "Id", "Id");
-            ViewData["AdressId"] = new SelectList(_context.Set<Address>(), "Id", "Id");
+            ViewData["AddressId"] = new SelectList(_context.Set<Address>(), "Id", "Id");
             return View();
         }
 
@@ -71,7 +71,7 @@ namespace TrashCollector.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AccountId"] = new SelectList(_context.Set<Account>(), "Id", "Id", customer.AccountId);
-            ViewData["AdressId"] = new SelectList(_context.Set<Address>(), "Id", "Id", customer.AdressId);
+            ViewData["AddressId"] = new SelectList(_context.Set<Address>(), "Id", "Id", customer.AddressId);
             return View(customer);
         }
 
@@ -89,7 +89,7 @@ namespace TrashCollector.Controllers
                 return NotFound();
             }
             ViewData["AccountId"] = new SelectList(_context.Set<Account>(), "Id", "Id", customer.AccountId);
-            ViewData["AdressId"] = new SelectList(_context.Set<Address>(), "Id", "Id", customer.AdressId);
+            ViewData["AddressId"] = new SelectList(_context.Set<Address>(), "Id", "Id", customer.AddressId);
             return View(customer);
         }
 
@@ -98,7 +98,7 @@ namespace TrashCollector.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,IdentityUserId,AdressId,AccountId")] Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,IdentityUserId,AddressId,AccountId")] Customer customer)
         {
             if (id != customer.Id)
             {
@@ -126,7 +126,7 @@ namespace TrashCollector.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AccountId"] = new SelectList(_context.Set<Account>(), "Id", "Id", customer.AccountId);
-            ViewData["AdressId"] = new SelectList(_context.Set<Address>(), "Id", "Id", customer.AdressId);
+            ViewData["AddressId"] = new SelectList(_context.Set<Address>(), "Id", "Id", customer.AddressId);
             return View(customer);
         }
 
