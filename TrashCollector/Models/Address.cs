@@ -20,8 +20,8 @@ namespace TrashCollector.Models
         [Display(Name = "State")]
         public string State { get; set; }
 
-        [Display(Name = "Zipe Code")]
-        public int ZipeCode { get; set; }
+        [Display(Name = "Zip Code")]
+        public int ZipCode { get; set; }
 
     }
 }

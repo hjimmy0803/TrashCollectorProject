@@ -26,16 +26,27 @@
             <div class="form-group">
                 <label asp-for="Address.Street" class="control-label"></label>
                 <input asp-for="Address.Street" class="form-control" />
+                <span asp-validation-for="Address.Street" class="text-danger"></span>
                 <label asp-for="Address.City" class="control-label"></label>
                 <input asp-for="Address.City" class="form-control" />
+                <span asp-validation-for="Address.City" class="text-danger"></span>
                 <label asp-for="Address.State" class="control-control"></label>
                 <input asp-for="Address.State" class="form-control" />
-                <label asp-for="Address.ZipeCode" class="control-label"></label>
-                <input asp-for="Address.ZipeCode" class="form-control" />
-                <label asp-for="Account.PickupDay" class="control-label"></label>
-                <input asp-for="Account.PickupDay" class="form-control" />
+                <span asp-validation-for="Address.State" class="text-danger"></span>
+                <label asp-for="Address.ZipCode" class="control-label"></label>
+                <input asp-for="Address.ZipCode" class="form-control" />
+                <span asp-validation-for="Address.ZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Account.StartDate" class="control-label"></label>
+                <input asp-for="Account.StartDate" class="form-control" />
+                <span asp-validation-for="Account.StartDate" class="text-danger"></span>
                 <label asp-for="Account.OneTimePickup" class="control-label"></label>
                 <input asp-for="Account.OneTimePickup" class="form-control" />
+                <span asp-validation-for="Account.OneTimePickup" class="text-danger"></span>
+                <label asp-for="Account.OneTimePickup" class="control-label"></label>
+                <input asp-for="Account.OneTimePickup" class="form-control" />
+                <span asp-validation-for="Account.OneTimePickup" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
