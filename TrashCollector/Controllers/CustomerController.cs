@@ -67,6 +67,7 @@ namespace TrashCollector.Controllers
                 _context.Addresses.Add(customer.Address);
                 _context.SaveChanges();
 
+                // gets the ID of the logged in user
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 customer.IdentityUserId = userId;
                 customer.AddressId = customer.Address.Id;

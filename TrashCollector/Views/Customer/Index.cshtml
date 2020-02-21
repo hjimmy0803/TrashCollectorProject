@@ -23,7 +23,16 @@
                 @Html.DisplayNameFor(model => model.IdentityUserId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
+                @Html.DisplayNameFor(model => model.Address.Street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address.ZipeCode)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Account)
@@ -44,7 +53,16 @@
                 @Html.DisplayFor(modelItem => item.IdentityUserId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Address.Id)
+                @Html.DisplayFor(modelItem => item.Address.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address.ZipeCode)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Account.Id)
