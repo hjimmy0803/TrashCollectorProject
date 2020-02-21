@@ -93,6 +93,8 @@ namespace TrashCollector.Areas.Identity.Pages.Account
                     if (await _roleManager.RoleExistsAsync(Input.role))
                     {
                         await _userManager.AddToRoleAsync(user, Input.role);
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+
 
                         if (Input.role == "Customer")
                         {

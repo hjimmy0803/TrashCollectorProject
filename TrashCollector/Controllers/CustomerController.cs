@@ -64,8 +64,12 @@ namespace TrashCollector.Controllers
         {
             if (ModelState.IsValid)
             {
+                _context.Addresses.Add(customer.Address);
+                _context.SaveChanges();
+
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 customer.IdentityUserId = userId;
+                customer.AddressId = customer.Address.Id;
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
