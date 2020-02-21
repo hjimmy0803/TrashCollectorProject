@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrashCollector.Data;
 
 namespace TrashCollector.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200221174526_Add Account")]
+    partial class AddAccount
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,22 +50,22 @@ namespace TrashCollector.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4e63b245-ed3b-46b8-bb0e-883f2bc85415",
-                            ConcurrencyStamp = "dbe31044-8d80-4e62-b8e6-e086f0866c51",
+                            Id = "85ebd5aa-c714-44f9-b95e-990dedce9866",
+                            ConcurrencyStamp = "4640a8f4-9f13-4c3d-a39a-0ac6939e1bc7",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "e513226d-6bf3-400b-a289-a88ab92d5924",
-                            ConcurrencyStamp = "5108c485-e990-403f-96f8-f11361d4622e",
+                            Id = "058afd4f-0f0d-400b-a8d5-b2628b525ae2",
+                            ConcurrencyStamp = "f529c9f5-c267-49d3-8170-86a0838de10a",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "2c6877fd-19ad-4264-9a99-1f68ed84b6ec",
-                            ConcurrencyStamp = "a074b296-a3dc-4c17-ad35-21ef91b3a25b",
+                            Id = "ef2ca3ac-6b43-4f95-a45e-6452228d4432",
+                            ConcurrencyStamp = "e0eb0762-6745-454b-8059-250accd5f334",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         });
@@ -290,7 +292,7 @@ namespace TrashCollector.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AccountId")
+                    b.Property<int?>("AccountId")
                         .HasColumnType("int");
 
                     b.Property<int>("AddressId")
@@ -397,9 +399,7 @@ namespace TrashCollector.Data.Migrations
                 {
                     b.HasOne("TrashCollector.Models.Account", "Account")
                         .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AccountId");
 
                     b.HasOne("TrashCollector.Models.Address", "Address")
                         .WithMany()

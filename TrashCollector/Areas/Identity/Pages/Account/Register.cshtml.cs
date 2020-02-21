@@ -68,7 +68,7 @@ namespace TrashCollector.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
             [Required]
-            public string role { get; set; }
+            public string Role { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -82,7 +82,7 @@ namespace TrashCollector.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
@@ -90,13 +90,13 @@ namespace TrashCollector.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    if (await _roleManager.RoleExistsAsync(Input.role))
+                    if (await _roleManager.RoleExistsAsync(Input.Role))
                     {
-                        await _userManager.AddToRoleAsync(user, Input.role);
+                        await _userManager.AddToRoleAsync(user, Input.Role);
                         await _signInManager.SignInAsync(user, isPersistent: false);
 
 
-                        if (Input.role == "Customer")
+                        if (Input.Role == "Customer")
                         {
                             return RedirectToAction("Create", "Customer");
                         }
@@ -113,7 +113,7 @@ namespace TrashCollector.Areas.Identity.Pages.Account
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
-                        values: new { area = "Identity", userId = user.Id, code = code },
+                        values: new { area = "Identity", userId = user.Id, code },
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",

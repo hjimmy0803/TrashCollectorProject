@@ -23,8 +23,11 @@ namespace TrashCollector.Controllers
         // GET: Customer
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Customers.Include(c => c.Account).Include(c => c.Address);
-            return View(await applicationDbContext.ToListAsync());
+
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var CurrentCustomer =await _context.Customers.Include(c => c.Account).Include(c => c.Address).Where(c => c.IdentityUserId == userId).ToListAsync(); 
+            return View( CurrentCustomer);
         }
 
         // GET: Customer/Details/5
@@ -70,7 +73,8 @@ namespace TrashCollector.Controllers
                 // gets the ID of the logged in user
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 customer.IdentityUserId = userId;
-                customer.AddressId = customer.Address.Id;
+               
+            
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -103,7 +107,7 @@ namespace TrashCollector.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,IdentityUserId,AddressId,AccountId")] Customer customer)
+        public async Task<IActionResult> Edit(int id, Customer customer)
         {
             if (id != customer.Id)
             {
@@ -130,7 +134,7 @@ namespace TrashCollector.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountId"] = new SelectList(_context.Set<Account>(), "Id", "Id", customer.AccountId);
+            ViewData["AccountId"] = new SelectList(_context.Set<Account>(), "Pickup Date", "Pickup Date", customer.Account.PickupDay);
             ViewData["AddressId"] = new SelectList(_context.Set<Address>(), "Id", "Id", customer.AddressId);
             return View(customer);
         }

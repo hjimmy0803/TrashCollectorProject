@@ -15,16 +15,16 @@ namespace TrashCollector.Models
         public string PickupDay { get; set; }
 
         [Display(Name = "Onetime Pickup")]
-        DateTime OneTimePickup { get; set; }
+        public DateTime OneTimePickup { get; set; }
 
         [Display(Name = "Suspend Account")]
         public bool IsSuspended { get; set; }
 
         [Display(Name = "Start Date")]
-        DateTime StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         [Display(Name = "End Date")]
-        DateTime EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         [Display(Name = "Balance")]
         public double Balance { get; set; } 

@@ -30,7 +30,7 @@ namespace TrashCollector.Models
 
         [ForeignKey("Account")]
         [Display(Name = "Account")]
-        public int? AccountId { get; set; }
+        public int AccountId { get; set; }
         public Account Account { get; set; }
 
     }
