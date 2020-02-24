@@ -134,8 +134,8 @@ namespace TrashCollector.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountId"] = new SelectList(_context.Set<Account>(), "Id", "Id", customer.AccountId);
-            ViewData["AddressId"] = new SelectList(_context.Set<Address>(), "Id", "Id", customer.AddressId);
+            ViewData["AccountId"] = new SelectList(_context.Set<Account>(), "Id", "Id", customer.Account);
+            ViewData["AddressId"] = new SelectList(_context.Set<Address>(), "Id", "Id", customer.Address);
             return View(customer);
         }
 
