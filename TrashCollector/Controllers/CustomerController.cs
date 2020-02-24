@@ -109,6 +109,7 @@ namespace TrashCollector.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Customer customer)
         {
+            var editedCustomer = _context.Customers.Find(id);
             if (id != customer.Id)
             {
                 return NotFound();
@@ -118,8 +119,18 @@ namespace TrashCollector.Controllers
             {
                 try
                 {
+                    editedCustomer.FirstName = customer.FirstName;
+                    editedCustomer.LastName = customer.LastName;
+                    editedCustomer.Address.Street = customer.Address.Street;
+                    editedCustomer.Address.City = customer.Address.City;
+                    editedCustomer.Address.State = customer.Address.State;
+                    editedCustomer.Address.ZipCode = customer.Address.ZipCode;
+                    editedCustomer.Account.OneTimePickup = customer.Account.OneTimePickup;
+
+                    _context.Entry(editedCustomer).State = EntityState.Modified;
                     _context.Update(customer);
-                    await _context.SaveChangesAsync();
+                   await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -132,10 +143,9 @@ namespace TrashCollector.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountId"] = new SelectList(_context.Set<Account>(), "Id", "Id", customer.Account);
-            ViewData["AddressId"] = new SelectList(_context.Set<Address>(), "Id", "Id", customer.Address);
+            ViewData["AccountId"] = new SelectList(_context.Set<Account>(), "Id", "Id", customer.AccountId);
+            ViewData["AddressId"] = new SelectList(_context.Set<Address>(), "Id", "Id", customer.AddressId);
             return View(customer);
         }
 
