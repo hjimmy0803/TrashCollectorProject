@@ -31,7 +31,7 @@ namespace TrashCollector.Controllers
         }
 
         // GET: Customer/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
             if (id == null)
             {
@@ -109,7 +109,7 @@ namespace TrashCollector.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Customer customer)
         {
-            var editedCustomer = _context.Customers.Find(id);
+           // var editedCustomer = _context.Customers.Find(id);
             if (id != customer.Id)
             {
                 return NotFound();
@@ -119,15 +119,18 @@ namespace TrashCollector.Controllers
             {
                 try
                 {
-                    editedCustomer.FirstName = customer.FirstName;
-                    editedCustomer.LastName = customer.LastName;
-                    editedCustomer.Address.Street = customer.Address.Street;
-                    editedCustomer.Address.City = customer.Address.City;
-                    editedCustomer.Address.State = customer.Address.State;
-                    editedCustomer.Address.ZipCode = customer.Address.ZipCode;
-                    editedCustomer.Account.OneTimePickup = customer.Account.OneTimePickup;
+                    ////editedCustomer.FirstName = customer.FirstName;
+                    //editedCustomer.LastName = customer.LastName;
+                    //editedCustomer.Address.Street = customer.Address.Street;
+                    //editedCustomer.Address.City = customer.Address.City;
+                    //editedCustomer.Address.State = customer.Address.State;
+                    //editedCustomer.Address.ZipCode = customer.Address.ZipCode;
+                    //editedCustomer.Account.OneTimePickup = customer.Account.OneTimePickup;
+                    //editedCustomer.Account.EndDate = customer.Account.EndDate;
+                    //editedCustomer.Account.PickupDay = customer.Account.PickupDay;
+                    //editedCustomer.Account.IsSuspended = customer.Account.IsSuspended;
 
-                    _context.Entry(editedCustomer).State = EntityState.Modified;
+                    //_context.Entry(editedCustomer).State = EntityState.Modified;
                     _context.Update(customer);
                    await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
