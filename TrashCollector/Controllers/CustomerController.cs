@@ -108,6 +108,7 @@ namespace TrashCollector.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Customer customer)
         {
+            
            // var editedCustomer = _context.Customers.Find(id);
             if (id != customer.Id)
             {
@@ -186,5 +187,7 @@ namespace TrashCollector.Controllers
         {
             return _context.Customers.Any(e => e.Id == id);
         }
+
+       
     }
 }
