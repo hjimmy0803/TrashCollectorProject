@@ -31,7 +31,7 @@ namespace TrashCollector.Controllers
         }
 
         // GET: Customer/Details/5
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -73,7 +73,6 @@ namespace TrashCollector.Controllers
                 // gets the ID of the logged in user
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 customer.IdentityUserId = userId;
-               
             
                 _context.Add(customer);
                 await _context.SaveChangesAsync();

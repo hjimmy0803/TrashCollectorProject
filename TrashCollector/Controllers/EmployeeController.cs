@@ -21,7 +21,7 @@ namespace TrashCollector.Controllers
         }
 
         // GET: Employee
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             //var applicationDbContext = _context.Employees.Include(e => e.IdentityUser);
             //return View(await applicationDbContext.ToListAsync());
@@ -33,7 +33,9 @@ namespace TrashCollector.Controllers
             var customerShown = _context.Customers
                 .Include(c => c.Address)
                 .Include(c => c.Account)
-                .Where(c => c.Address.ZipCode == currentEmployee.ZipCode).ToListAsync();
+                .Where(c => c.Address.ZipCode == currentEmployee.ZipCode)
+                .ToList();
+
             return View(customerShown);
         }
 
@@ -69,15 +71,18 @@ namespace TrashCollector.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,ZipCode,IdentityUserId")] Employee employee)
+        public async Task<IActionResult> Create( Employee employee)
         {
           
 
             if (ModelState.IsValid)
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                employee.IdentityUserId = userId;
+
                 _context.Add(employee);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index","Employee");
             }
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", employee.IdentityUserId);
             return View(employee);
